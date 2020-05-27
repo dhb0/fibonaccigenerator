@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,400;0,700;1,300;1,400;1,700&display=swap" rel="stylesheet">
+    <style>
+        
+        body{
+            text-align: center;
+            font-family: 'Roboto Condensed', sans-serif;
+            background-color: #e1b382;
+            color: #2d545e;
+        }
+
+        label{
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        form *{
+            margin-top: 5px;
+        }
+
+        input{
+            font-family: inherit;
+        }
+
+        input[type='button']{
+            height: 1.8rem;
+            width: 7rem;
+            font-weight: 700;
+            font-size: 120%;
+            border-radius: 3px;
+            outline:none;
+            background-color: #2d545e;
+            color: #e1b382;
+        }
+
+        input[type='number']{
+            height: 1.2rem;
+            padding: 2px;
+            color: inherit;
+            outline: none;
+            font-size: 120%;
+            padding: 4px;
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="main">
+        <header>
+            <h1>Fibonacci Numbers App</h1>
+        </header>
+        <form>
+            <label for='howmany'>How many numbers do you want from the Fibonacci Series?</label><br>
+            <input type="number" id="theNum" required><br>
+            <input type="button" id='execute' value='SHOW'>
+        </form>
+        <div id="result">
+            <h2 id = "resultfield"></h2>
+        </div>
+    </div>
+
+<script>
+
+document.querySelector('#execute').addEventListener('click', fiba);
+function fiba(e){
+    var x = Number(document.getElementById('theNum').value);
+    var result;
+    if(x<=0){
+        alert('Please enter a positive number');
+        result = '';
+    }else if(x==1){
+        result = 0;
+    }else{
+        var myArr = [0,1];
+    for(let i = 1; i<x-1 ;i++){
+        myArr.push(myArr[myArr.length-1] + myArr[myArr.length-2]);
+             }
+
+    result = myArr.toString();
+        }
+   
+    document.querySelector('#resultfield').innerHTML = result;
+}
+
+var inputField = document.getElementById('theNum');
+inputField.addEventListener("keydown", function(e) {
+  // Number 13 is the "Enter" key on the keyboard
+  if (e.keyCode === 13) {
+    // Cancel the default action, if needed
+    event.preventDefault();
+    // Trigger the button element with a click
+    document.getElementById("execute").click();
+  }
+})
+</script>
+    
+</body>
+</html>
